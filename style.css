@@ -39,7 +39,7 @@ iframe {
 
 footer {
     text-align: center;
-    padding: 20px;
+    padding-bottom: 20px;
     background-color: #343a40;
     color: white;
     border-top: 2px solid #0077b5;
@@ -49,9 +49,8 @@ footer {
 }
 
 footer p {
-    margin: 5px 0;
     line-height: 1.5;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 footer .social-media {
@@ -59,7 +58,6 @@ footer .social-media {
 }
 
 .social-media a {
-    margin: 0 15px;
     text-decoration: none;
     color: #FFDD57;
     font-weight: bold;
