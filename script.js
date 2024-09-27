@@ -19,6 +19,23 @@ function updateChart1() {
         "&yaxismin=0" +
         "&yaxismax=100";
     document.getElementById('iframe1').src = apiUrl1;
+    updateTemperatureData(results);
+}
+function updateTemperatureData(results) {
+    fetch(`https://api.thingspeak.com/channels/${channelId}/feeds.json?results=${results}`)
+        .then(response => response.json())
+        .then(data => {
+            const feeds = data.feeds.reverse();
+            let dataContainer1 = document.getElementById("dataContainer1");
+            let htmlContent = ``;
+
+            feeds.forEach(feed => {
+                htmlContent += `<p>Temperatura: ${feed.field1}°C (Hora: ${new Date(feed.created_at).toLocaleTimeString()})</p>`;
+            });
+
+            dataContainer1.innerHTML = htmlContent;
+        })
+        .catch(error => console.error("Erro ao buscar dados da API:", error));
 }
 
 function updateChart2() {
@@ -34,9 +51,26 @@ function updateChart2() {
         "&yaxismin=0" +
         "&yaxismax=100";
     document.getElementById('iframe2').src = apiUrl2;
+    updateUmidadeData(results);
+}
+function updateUmidadeData(results) {
+    fetch(`https://api.thingspeak.com/channels/${channelId}/feeds.json?results=${results}`)
+        .then(response => response.json())
+        .then(data => {
+            const feeds = data.feeds.reverse();
+            let dataContainer2 = document.getElementById("dataContainer2");
+            let htmlContent = ``;
+
+            feeds.forEach(feed => {
+                htmlContent += `<p>Umidade: ${feed.field2}% (Hora: ${new Date(feed.created_at).toLocaleTimeString()})</p>`;
+            });
+
+            dataContainer2.innerHTML = htmlContent;
+        })
+        .catch(error => console.error("Erro ao buscar dados da API:", error));
 }
 
-let apiUrl3 = "https://thingspeak.com/channels/" + channelId + "/charts/3?title=Relê" +
+let apiUrl3 = "https://thingspeak.com/channels/" + channelId + "/charts/3?title=Relé" +
         "&bgcolor=" + bgcolorHumidity +
         "&color=" + colorHumidity +
         "&dynamic=" + dynamic +
@@ -45,6 +79,22 @@ let apiUrl3 = "https://thingspeak.com/channels/" + channelId + "/charts/3?title=
         "&yaxismin=0" +
         "&yaxismax=1";
 document.getElementById('iframe3').src = apiUrl3;
+
+fetch(`https://api.thingspeak.com/channels/${channelId}/feeds.json?results=120`)
+    .then(response => response.json())
+    .then(data => {
+        const feeds = data.feeds.reverse();
+        let dataContainer3 = document.getElementById("dataContainer3");
+        let htmlContent = ``;
+
+        feeds.forEach(feed => {
+            const relayStatus = feed.field3 === "1" ? 'Ligado' : 'Desligado';
+            htmlContent += `<p>Relé: ${relayStatus} (Hora: ${new Date(feed.created_at).toLocaleTimeString()})</p>`;
+        });
+
+        dataContainer3.innerHTML = htmlContent;
+    })
+    .catch(error => console.error("Erro ao buscar dados da API:", error));
 
 updateChart1();
 updateChart2();
