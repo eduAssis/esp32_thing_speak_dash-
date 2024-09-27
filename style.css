@@ -28,6 +28,7 @@ h1 {
 }
 
 .chart-section, .data-section {
+    text-align: center;
     flex: 1 1 45%;
     margin: 5px;
 }
