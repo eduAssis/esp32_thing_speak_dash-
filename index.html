@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow">
     <title>Monitoramento de Temperatura e Umidade</title>
+    <meta name="description" content="Projeto de monitoramento de temperatura e umidade utilizando ESP32 e DHT11, 
+    com visualização em tempo real na plataforma ThingSpeak. O sistema aciona um relé com base em condições específicas 
+    de temperatura e umidade.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,7 +19,7 @@
         <section>
             <h2>Objetivos:</h2>
             <ul>
-                <li>Coletar dados de temperatura e umidade em tempo real.</li>
+                <li>Coletar dados de temperatura e umidade em tempo real utilizando o microcontrolador ESP32 e o sensor DHT11.</li>
                 <li>Transmitir esses dados para a plataforma ThingSpeak para visualização.</li>
                 <li>Acionar um relé caso a temperatura ultrapasse 31 °C ou a umidade relativa do ar seja superior a 70%.</li>
             </ul>
@@ -40,7 +43,7 @@
                                 <option value="step">Step</option>
                             </select>
                         </div>
-                        <iframe id="iframe1" width="450" height="260"></iframe>
+                        <iframe id="iframe1" width="450" height="260" title="Gráfico de Temperatura"></iframe>
                     </div>
                     <div class="data-section">
                         <h3>Últimos Dados de Temperatura</h3>
@@ -63,7 +66,7 @@
                                 <option value="step">Step</option>
                             </select>
                         </div>
-                        <iframe id="iframe2" width="450" height="260"></iframe>
+                        <iframe id="iframe2" width="450" height="260" title="Gráfico de Umidade"></iframe>
                     </div>
                     <div class="data-section">
                         <h3>Últimos Dados de Umidade</h3>
@@ -76,7 +79,7 @@
                         <div class="select-container">
                             <h3>Estado do Relé</h3>
                         </div>
-                        <iframe id="iframe3" width="450" height="260"></iframe>
+                        <iframe id="iframe3" width="450" height="260" title="Gráfico de Estados do Relé"></iframe>
                     </div>
                     <div class="data-section">
                         <h3>Últimos Estados do Relé</h3>

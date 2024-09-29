@@ -30,7 +30,11 @@ function updateTemperatureData(results) {
             let htmlContent = ``;
 
             feeds.forEach(feed => {
-                htmlContent += `<p>Temperatura: ${feed.field1}°C (Hora: ${new Date(feed.created_at).toLocaleTimeString()})</p>`;
+                const createdAt = new Date(feed.created_at);
+                const date = createdAt.toLocaleDateString();
+                const time = createdAt.toLocaleTimeString();
+
+                htmlContent += `<p>Temperatura: ${feed.field1}°C (${date}, Hora: ${time})</p>`;
             });
 
             dataContainer1.innerHTML = htmlContent;
@@ -62,7 +66,11 @@ function updateUmidadeData(results) {
             let htmlContent = ``;
 
             feeds.forEach(feed => {
-                htmlContent += `<p>Umidade: ${feed.field2}% (Hora: ${new Date(feed.created_at).toLocaleTimeString()})</p>`;
+                const createdAt = new Date(feed.created_at);
+                const date = createdAt.toLocaleDateString();
+                const time = createdAt.toLocaleTimeString();
+
+                htmlContent += `<p>Umidade: ${feed.field2}% (${date}, Hora: ${time})</p>`;
             });
 
             dataContainer2.innerHTML = htmlContent;
@@ -89,7 +97,13 @@ fetch(`https://api.thingspeak.com/channels/${channelId}/feeds.json?results=120`)
 
         feeds.forEach(feed => {
             const relayStatus = feed.field3 === "1" ? 'Ligado' : 'Desligado';
-            htmlContent += `<p>Relé: ${relayStatus} (Hora: ${new Date(feed.created_at).toLocaleTimeString()})</p>`;
+            // Obtenha a data e a hora
+            const createdAt = new Date(feed.created_at);
+            const date = createdAt.toLocaleDateString();
+            const time = createdAt.toLocaleTimeString();
+
+            // Adicione a data e a hora ao conteúdo HTML
+            htmlContent += `<p>Relé: ${relayStatus} (${date}, Hora: ${time})</p>`;
         });
 
         dataContainer3.innerHTML = htmlContent;
