@@ -47,7 +47,7 @@ h1 {
     overflow-y: auto;
 }
 
-.select-container, h3 {
+.select-container, .video-container, h3 {
     text-align: center;
     margin: 15px 0 20px;
 }
